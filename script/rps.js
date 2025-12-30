@@ -1,8 +1,5 @@
 //console.log("hello world!");
 
-const humanScore = 0;
-const computerScore = 0;
-
 // fuction defined to get computer choice
 function getComputerChoice(){
     const randomNumber = Math.floor(Math.random() * 3);
@@ -18,8 +15,8 @@ function getComputerChoice(){
 }
 
 // function defined to get human (player) choice
-function getHumanCHoice(userInput){
-    //let userInput = "rock, paper, scissors?";
+function getHumanCHoice(){
+    let userInput = prompt("rock, paper, scissors?");
     userInput = userInput.toLowerCase();
     if (userInput === "rock" || userInput === "paper" || userInput === "scissors"){
        return userInput;
@@ -39,7 +36,7 @@ function playground(humanChoice, computerChoice){
         if(computerChoice === "paper"){
             return "oops, computer wins";
         }else{
-            return "comgrats, you won!";
+            return "comgrats, you win!";
         }
     }
 
@@ -47,7 +44,7 @@ function playground(humanChoice, computerChoice){
         if(computerChoice === "scissors"){
             return "oops, computer wins";
         }else{
-            return "congrats, you won";
+            return "congrats, you win";
         }
     }
 
@@ -55,22 +52,44 @@ function playground(humanChoice, computerChoice){
         if(computerChoice === "rock"){
             return "oops, computer wins";
         }else{
-            return "congrats, you won";
+            return "congrats, you win";
         }
     }
 
 }
 
 function playgame(){
-    const humanChoice = getHumanCHoice('paper');
+let rounds = 1;
+let humanScore = 0;
+let computerScore =0;
+
+for (i = 0; i < 5; i++){
+    const humanChoice =getHumanCHoice();
     const computerChoice = getComputerChoice();
+    console.log("Your Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
 
-    console.log('you threw ' + humanChoice);
-    console.log('computer threw ' + computerChoice);
+    const result = playground(humanChoice, computerChoice);
 
-    console.log(playground(humanChoice, computerChoice));
+    if (result === "congrats, you win"){
+        humanScore++
+    }else if (result === "oops, computer wins"){
+        computerScore++
+    }
+
+    console.log("Total: You: " + humanScore, "computer: " + computerScore);
 }
 
+
+if(humanScore === computerScore){
+   console.log("Game over: is a draw");
+}else if(humanScore > computerScore){
+    console.log("Congrats, you win!");
+}else{
+    console.log("You lose! Try again");
+}
+    
+}
 playgame();
 
 
